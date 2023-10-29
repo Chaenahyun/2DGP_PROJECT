@@ -1,5 +1,6 @@
 import os
 import pico2d
+import subprocess
 
 # 경로 설정
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -27,5 +28,7 @@ while running:
             x, y = event.x, 600 - event.y
             if 300 < x < 500 and 50 < y < 150:  # quit_button 영역
                 running = False
+            elif 300 < x < 500 and 150 < y < 250:  # start_button 영역
+                subprocess.run(["python", "game_play.py"])  # game_play.py 실행
 
 pico2d.close_canvas()
