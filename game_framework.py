@@ -29,6 +29,6 @@ while running:
             if 300 < x < 500 and 50 < y < 150:  # quit_button 영역
                 running = False
             elif 300 < x < 500 and 150 < y < 250:  # start_button 영역
-                subprocess.run(["python", "game_play.py"])  # game_play.py 실행
+                subprocess.run(["python", "play_mode.py"])  # play_mode.py 실행
 
 pico2d.close_canvas()
