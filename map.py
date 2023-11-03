@@ -11,4 +11,5 @@ class map:
         self.image.draw(1600, 900)
 
 
-
+class Map:
+    pass
