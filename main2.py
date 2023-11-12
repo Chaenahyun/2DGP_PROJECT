@@ -1,9 +1,9 @@
 #마우스 클릭으로 이동
 from pico2d import *
 
-ground_width, ground_height = 1334, 751
+ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
-ground = load_image('map.png')
+ground = load_image('ground_hitting.png')
 character = load_image('pitcher.png')
 
 def handle_events():
@@ -29,7 +29,7 @@ move_arrow_x, move_arrow_y = x, y
 while running:
     clear_canvas()
     ground.draw(ground_width // 2, ground_height // 2)
-    character.clip_draw(frame * 20, 0, 20, 20, x, y, 60, 60)
+    character.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
 
     if x < move_arrow_x:
         x += 5

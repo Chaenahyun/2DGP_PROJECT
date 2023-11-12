@@ -1,9 +1,9 @@
 #키보드 방향키 이동
 from pico2d import *
 
-ground_width, ground_height =1334,  751
+ground_width, ground_height =800, 450
 open_canvas(ground_width, ground_height)
-ground = load_image('map.png')
+ground = load_image('ground_hitting.png')
 
 character = load_image('pitcher.png')
 #character_right = load_image('.png')
@@ -12,14 +12,14 @@ character = load_image('pitcher.png')
 #character_down = load_image('.png')
 
 running = True
-x = 100  # 초기 x 좌표
-y = 250  # 초기 y 좌표
+x = 400  # 초기 x 좌표
+y = 160  # 초기 y 좌표
 frame = 0  # 변수 초기화
 dir_x = 0
 dir_y = 0
 
-SCREEN_WIDTH = 1334
-SCREEN_HEIGHT = 751
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 450
 
 character_width = 60
 character_height = 60
@@ -64,7 +64,7 @@ def handle_events():
 while running:
     clear_canvas()
     ground.draw(ground_width//2, ground_height//2)
-    character.clip_draw(frame * 20, 0, 20, 20, x, y, 60, 60)
+    character.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
 
     update_canvas()
     handle_events()
