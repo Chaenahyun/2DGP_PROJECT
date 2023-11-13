@@ -4,8 +4,9 @@ ground_width, ground_height =800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_hitting.png')
 
-hitter_left_handed = load_image('hitter_left_handed.png')
+#hitter_left_handed = load_image('hitter_left_handed.png')
 #hitter_right_handed = load_image('hitter_right_handed.png')
+idle_hitter_left_handed = load_image('idle_hitter_left_handed.png')
 
 running = True
 x = 600  # 초기 x 좌표
@@ -35,7 +36,8 @@ def handle_events():
 while running:
     clear_canvas()
     ground.draw(ground_width//2, ground_height//2)
-    hitter_left_handed.clip_draw(frame * 80, 0, 80, 80, x, y, 250, 250)
+    #hitter_left_handed.clip_draw(frame * 80, 0, 80, 80, x, y, 250, 250)
+    idle_hitter_left_handed.clip_draw(frame * 50, 0, 50, 50, x, y, 250, 250)
 
     update_canvas()
     handle_events()
