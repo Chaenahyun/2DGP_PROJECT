@@ -6,6 +6,7 @@ ground = load_image('ground_pitching.png')
 
 hitter_left_handed = load_image('pitcher.png')
 surprised_pitcher = load_image('surprised_pitcher.png')
+fast_ball = load_image('fast_ball.png')
 
 running = True
 x = 400  # 초기 x 좌표
@@ -36,6 +37,7 @@ while running:
     clear_canvas()
     ground.draw(ground_width//2, ground_height//2)
     hitter_left_handed.clip_draw(frame * 45, 0, 45, 45, x, y, 50, 50)
+    fast_ball.clip_draw(frame * 20, 0, 20, 20, x, y, 100, 100)
 
     update_canvas()
     handle_events()
