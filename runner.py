@@ -4,7 +4,7 @@ from pico2d import *
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_hitting.png')
-character = load_image('pitcher.png')
+runner = load_image('pitcher.png')
 
 def handle_events():
     global running
@@ -29,7 +29,7 @@ move_arrow_x, move_arrow_y = x, y
 while running:
     clear_canvas()
     ground.draw(ground_width // 2, ground_height // 2)
-    character.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
+    runner.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
 
     if x < move_arrow_x:
         x += 5
