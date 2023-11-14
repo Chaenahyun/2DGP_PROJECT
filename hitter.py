@@ -4,16 +4,14 @@ ground_width, ground_height =800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_hitting.png')
 
-#hitter_left_handed = load_image('hitter_left_handed.png')
-#hitter_right_handed = load_image('hitter_right_handed.png')
+hitter_left_handed = load_image('hitter_left_handed.png')
+hitter_right_handed = load_image('hitter_right_handed.png')
 idle_hitter_left_handed = load_image('idle_hitter_left_handed.png')
 
 running = True
 x = 600  # 초기 x 좌표
 y = 120  # 초기 y 좌표
 frame = 0  # 변수 초기화
-dir_x = 0
-dir_y = 0
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 450
@@ -43,7 +41,7 @@ while running:
     handle_events()
 
     frame = (frame + 1) % 8
-    delay(0.1)
+    delay(0.3)
 
     if not running:
         break
