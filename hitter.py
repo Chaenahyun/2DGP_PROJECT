@@ -4,10 +4,10 @@ ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_hitting.png')
 
-# 스윙
+# 타자 sprite
 hitter_left_handed = load_image('hitter_left_handed.png')
 hitter_right_handed = load_image('hitter_right_handed.png')
-# idle
+# 타자 idle sprite
 idle_hitter_left_handed = load_image('idle_hitter_left_handed.png')
 idle_hitter_right_handed = load_image('idle_hitter_right_handed.png')
 

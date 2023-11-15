@@ -5,7 +5,7 @@ ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_pitching.png')
 strike_zoon = load_image('strike_zoon.png')
-pitcher_left_handed = load_image('pitcher.png')
+pitching_pitcher = load_image('pitching_pitcher.png')
 fast_ball = load_image('fast_ball.png')
 
 running = True
@@ -27,7 +27,7 @@ pitching_delay = 0.1
 def draw():
     clear_canvas()
     ground.draw(ground_width // 2, ground_height // 2)
-    pitcher_left_handed.clip_draw(pitcher_frame * 45, 0, 45, 45, x_pitcher, y_pitcher, 100, 100)
+    pitching_pitcher.clip_draw(pitcher_frame * 45, 0, 45, 45, x_pitcher, y_pitcher, 100, 100)
     if draw_fast_ball:
         fast_ball.clip_draw(ball_frame * 20, 0, 20, 40, x_ball, y_ball, 100, 100)
     update_canvas()
