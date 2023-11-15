@@ -1,5 +1,8 @@
 from pico2d import *
 
+def lerp(start, end, t):
+    return (1 - t) * start + t * end
+
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_full.png')
@@ -47,7 +50,7 @@ start_runner_idle = False
 # 딜레이
 running_delay = 0.1
 running_idle_delay = 0.5
-
+transition_speed = 0.05  # 상태 전환 속도
 
 # 핸들 이벤트
 # 마우스 좌클릭한 위치에 주자 이동
@@ -74,6 +77,14 @@ def move_to_base(base_index):
     start_running = True
 
 
+# 베이스에 도착하면 start_running을 False로 설정
+def check_arrival():
+    global runner_x, runner_y, move_arrow_x, move_arrow_y, start_running
+
+    if abs(runner_x - move_arrow_x) <= 5 and abs(runner_y - move_arrow_y) <= 5:
+        start_running = False
+
+
 # 애니메이션 재생
 def draw():
     global runner_frame, runner_idle_frame, start_running, runner_x, runner_y
@@ -94,25 +105,26 @@ def draw():
 
     # 주자 애니메이션을 그림
     if start_running:
-        if current_base_index in [1, 2]:
+        # 주자의 좌표 업데이트
+        t = transition_speed  # 전환 속도에 따라 위치를 업데이트
+        runner_x, runner_y = lerp(runner_x, move_arrow_x, t), lerp(runner_y, move_arrow_y, t)
+
+        # 베이스에 도착하면 애니메이션 정지
+        check_arrival()
+
+        # 주자 애니메이션을 그림
+        if current_base_index in [1, 3]:
             # 1루와 3루에서는 왼쪽으로 이동하는 애니메이션을 재생
             running_runner_to_left.clip_draw(runner_frame * 45, 0, 45, 45,
                                              runner_x, runner_y, 30, 30)
-        elif current_base_index in [0, 3]:
+        elif current_base_index in [0, 2]:
             # 홈과 2루에서는 오른쪽으로 이동하는 애니메이션을 재생
             running_runner_to_right.clip_draw(runner_frame * 45, 0, 45, 45,
                                               runner_x, runner_y, 30, 30)
 
-        # 주자의 좌표 업데이트
-        if runner_x < move_arrow_x:
-            runner_x += 5
-        elif runner_x > move_arrow_x:
-            runner_x -= 5
+        # 주자 애니메이션 프레임 업데이트
+        runner_frame = (runner_frame + 1) % runner_frame_count
 
-        if runner_y < move_arrow_y:
-            runner_y += 5
-        elif runner_y > move_arrow_y:
-            runner_y -= 5
     # idle
     if not start_running:
         idle_runner.clip_draw(runner_idle_frame * 45, 0, 45, 45,
@@ -122,17 +134,17 @@ def draw():
 
 
 def update():
-    global runner_frame, runner_idle_frame, start_running
-
-    # 달리기
-    if start_running:
-        runner_frame = (runner_frame + 1) % runner_frame_count
-        delay(running_delay)
+    global runner_idle_frame, start_running, runner_frame
 
     # 달리지 않을 때는 idle 애니메이션 재생
     if not start_running:
         runner_idle_frame = (runner_idle_frame + 1) % runner_idle_frame_count
         delay(running_idle_delay)
+    else:
+        # 달리기 중일 때는 running 애니메이션 재생
+        runner_frame = (runner_frame + 1) % runner_frame_count
+        delay(running_delay)
+
 
 
 while running:
