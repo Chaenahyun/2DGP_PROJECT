@@ -19,7 +19,9 @@ hitter_right_handed_y = 150  # 초기 y 좌표
 
 hitter_frame = 0
 hitter_idle_frame = 8
+
 hitter_frame_count = 8
+hitter_idle_frame_count = 8
 
 hitting_delay = 0.1
 hitter_idle_delay = 0.2
@@ -63,7 +65,7 @@ def update():
 
     # 스윙하지 않을 때는 idle 애니메이션 재생
     if not start_hitting:
-        hitter_idle_frame = (hitter_idle_frame + 1) % hitter_frame_count
+        hitter_idle_frame = (hitter_idle_frame + 1) % hitter_idle_frame_count
         delay(hitter_idle_delay)
 
 while running:
