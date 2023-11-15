@@ -3,18 +3,22 @@ from pico2d import *
 
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
-
-# 이미지 로드
 ground = load_image('ground_full.png')
+#주자
 running_runner_to_left = load_image('running_runner_left.png')
 running_runner_to_right = load_image('running_runner_right.png')
 idle_runner = load_image('idle_runner_left.png')
+#베이스
+first_base = load_image('base.png')
+second_base = load_image('base.png')
+third_base = load_image('base.png')
+home_base = load_image('home_base.png')
 
 running = True
 
 # 주자 초기 위치
 runner_x = 495
-runner_y = 100
+runner_y = 95
 
 # 마우스 좌표
 move_arrow_x, move_arrow_y = runner_x, runner_y
@@ -32,7 +36,7 @@ start_running = False
 start_runner_idle = False
 
 # 딜레이
-running_delay = 0.15
+running_delay = 0.1
 running_idle_delay = 0.5
 
 
@@ -58,11 +62,18 @@ def draw():
     global runner_frame, runner_idle_frame, start_running, runner_x, runner_y
 
     clear_canvas()
+
     ground.draw(ground_width // 2, ground_height // 2)
+
+    first_base.draw(495, 72, 15, 15)
+    second_base.draw(398, 122, 15, 15)
+    third_base.draw(300, 72, 15, 15)
+    home_base.draw(398, 23, 15, 15)
+
 
     if start_running:
         running_runner_to_left.clip_draw(runner_frame * 45, 0, 45, 45,
-                                          runner_x, runner_y, 45, 45)
+                                          runner_x, runner_y, 35, 35)
         if runner_x < move_arrow_x:
             runner_x += 5
         elif runner_x > move_arrow_x:
@@ -76,7 +87,7 @@ def draw():
     # 달리지 않을 때는 idle 애니메이션 재생
     if not start_running:
         idle_runner.clip_draw(runner_idle_frame * 45, 0, 45, 45,
-                              runner_x, runner_y, 45, 45)
+                              runner_x, runner_y, 35, 35)
 
     update_canvas()
 
