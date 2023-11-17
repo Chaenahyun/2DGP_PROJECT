@@ -3,18 +3,21 @@ from pico2d import *
 
 ground_width, ground_height =800, 450
 open_canvas(ground_width, ground_height)
-ground = load_image('ground_hitting.png')
+ground = load_image('ground_full.png')
 
-character = load_image('pitcher.png')
-#character_right = load_image('.png')
-#character_left = load_image('.png')
-#character_up = load_image('.png')
-#character_down = load_image('.png')
+idle_defender = load_image('idle_defender.png')
+running_defender_to_left = load_image('running_defender_to_left.png')
+running_defender_to_right = load_image('running_defender_to_right.png')
+catching_and_throwing_defender = load_image('catching_and_throwing_defender.png')
+catching_ground_ball_and_throwing_defender = load_image('catching_ground_ball_and_throwing_defender.png')
+jump_catching_and_throwing_defender = load_image('jump_catching_and_throwing_defender.png')
+
 
 running = True
 x = 400  # 초기 x 좌표
 y = 160  # 초기 y 좌표
 frame = 0  # 변수 초기화
+
 dir_x = 0
 dir_y = 0
 
