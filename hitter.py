@@ -18,7 +18,7 @@ hitter_right_handed_x = 230  # 초기 x 좌표
 hitter_right_handed_y = 150  # 초기 y 좌표
 
 hitter_frame = 0
-hitter_idle_frame = 8
+hitter_idle_frame = 0
 
 hitter_frame_count = 8
 hitter_idle_frame_count = 8

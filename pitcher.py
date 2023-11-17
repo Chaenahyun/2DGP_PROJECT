@@ -38,7 +38,7 @@ ball_frame_count = 5
 
 # 딜레이
 pitching_delay = 0.1
-pitching_idle_delay = 0.3
+pitcher_idle_delay = 0.3
 ball_delay = 0.2
 
 # 핸들 이벤트
@@ -103,7 +103,7 @@ def update():
     # 공을 던지지 않을 때는 idle 애니메이션 재생
     if not start_pitching:
         pitcher_idle_frame = (pitcher_idle_frame + 1) % pitcher_idle_frame_count
-        delay(pitching_idle_delay)
+        delay(pitcher_idle_delay)
 
 
     # 투수가 놀란 애니메이션의 프레임 업데이트
