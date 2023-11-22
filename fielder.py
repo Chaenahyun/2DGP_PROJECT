@@ -5,12 +5,12 @@ ground_width, ground_height =800, 450
 open_canvas(ground_width, ground_height)
 ground = load_image('ground_full.png')
 
-idle_defender = load_image('idle_defender.png')
-running_defender_to_left = load_image('running_defender_to_left.png')
-running_defender_to_right = load_image('running_defender_to_right.png')
-catching_and_throwing_defender = load_image('catching_and_throwing_defender.png')
-catching_ground_ball_and_throwing_defender = load_image('catching_ground_ball_and_throwing_defender.png')
-jump_catching_and_throwing_defender = load_image('jump_catching_and_throwing_defender.png')
+idle_fielder = load_image('idle_defender.png')
+running_fielder_to_left = load_image('running_defender_to_left.png')
+running_fielder_to_right = load_image('running_defender_to_right.png')
+catching_and_throwing_fielder = load_image('catching_and_throwing_defender.png')
+catching_ground_ball_and_throwing_fielder = load_image('catching_ground_ball_and_throwing_defender.png')
+jump_catching_and_throwing_fielder = load_image('jump_catching_and_throwing_defender.png')
 
 
 running = True
@@ -29,7 +29,7 @@ character_height = 60
 
 
 def handle_events():
-    global running, dir_x, dir_y, character, is_idle, idle_frame  # 전역 변수
+    global running, dir_x, dir_y, fielder, is_idle, idle_frame  # 전역 변수
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
@@ -67,8 +67,13 @@ def handle_events():
 while running:
     clear_canvas()
     ground.draw(ground_width//2, ground_height//2)
-    character.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
 
+    idle_fielder.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
+    running_fielder_to_left.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
+    running_fielder_to_right(frame * 20, 0, 20, 20, x, y, 30, 30)
+    catching_and_throwing_fielder.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
+    catching_ground_ball_and_throwing_fielder.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
+    jump_catching_and_throwing_fielder.clip_draw(frame * 20, 0, 20, 20, x, y, 30, 30)
     update_canvas()
     handle_events()
 

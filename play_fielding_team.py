@@ -44,6 +44,6 @@ while running:
     handle_events()
     update()
     draw()
-    delay(0.2)
+    delay(0.1)
 
 close_canvas()

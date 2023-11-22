@@ -21,8 +21,8 @@ class Batter:
         self.hitter_frame_count = 8
         self.hitter_idle_frame_count = 8
 
-        #self.hitting_delay = 0.1
-        #self.hitter_idle_delay = 0.2
+        self.hitting_delay = 0.01
+        self.hitter_idle_delay = 0.3
 
         self.start_hitting = False
 

@@ -9,8 +9,8 @@ class Pitcher:
         self.frame = 0
         self.idle_frame_count = 8
         self.pitching_frame_count = 8
-        #self.idle_delay = 0.3
-        #self.pitching_delay = 0.1
+        self.idle_delay = 0.3
+        self.pitching_delay = 0.01
 
         self.start_pitching = False
 
