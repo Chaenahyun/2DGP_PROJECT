@@ -1,12 +1,10 @@
-#curve_ball.py
+# curve_ball.py
 from pico2d import *
 import math
 
-from fast_ball import ball
-
-
-class Ball:
+class CurveBall:
     def __init__(self, x, y, speed, delay, size=15):
+        self.initial_x, self.initial_y = x, y
         self.x, self.y = x, y
         self.speed = speed
         self.size = size
@@ -16,9 +14,13 @@ class Ball:
         self.t = 0.0
         self.points = []
         self.start_pitching = False
+        self.curve_ball = None  # 초기값을 None으로 설정
+        self.load_images()
+
+    def load_images(self):
+        self.curve_ball = load_image('ball.png')
 
     def get_bezier_point(self, p0, p1, p2, p3, t):
-        # 베지에 곡선을 계산하는 함수
         u = 1 - t
         tt = t * t
         uu = u * u
@@ -33,7 +35,6 @@ class Ball:
         return p
 
     def set_target(self, target):
-        # 목표 위치 설정
         target_x, target_y = target
         self.points.clear()
         for t in range(0, 101):
@@ -43,11 +44,10 @@ class Ball:
             self.points.append((x, y))
 
     def set_target_position(self, index, is_strike=True):
-        # 목표 위치로 공을 설정하고 애니메이션 시작
         if not self.start_pitching:
             self.start_pitching = True
-            self.x, self.y = initial_ball_x, initial_ball_y
-            self.size = 15
+            self.x, self.y = self.initial_x, self.initial_y
+            self.size = 15  # 초기 크기로 되돌림
             self.t = 0.0
 
             if is_strike:
@@ -56,7 +56,6 @@ class Ball:
                 self.set_target(target_positions_ball[index])
 
     def update(self):
-        # 애니메이션 업데이트
         if self.start_pitching and self.t <= 1.0:
             elapsed_time = get_time()
 
@@ -84,10 +83,10 @@ class Ball:
                 delay(0.001)
 
     def draw(self):
-        # 공 그리기
         if self.start_pitching and self.t <= 1.0:
-            ball.draw(self.x, self.y, self.size, self.size)
+            self.curve_ball.draw(self.x, self.y, self.size, self.size)
             self.size += 0.1
+
 
 # 초기 위치
 initial_ball_x, initial_ball_y = (380, 200)
@@ -105,7 +104,7 @@ target_positions_ball = [
     (405, 50), (470, 50)
 ]
 
-ball_object = Ball(initial_ball_x, initial_ball_y, 5, 0.02)
+ball_object = CurveBall(initial_ball_x, initial_ball_y, 5, 0.02)
 
 # 시작 여부
 running = True
@@ -128,15 +127,15 @@ def handle_events():
                 ball_object.set_target_position(target_index, is_strike=False)
 
 # 애니메이션 재생
-def draw():
-    clear_canvas()
-    ball_object.draw()
-    update_canvas()
+#def draw():
+#    clear_canvas()
+#    ball_object.draw()
+#    update_canvas()
 
 # 메인 루프
-while running:
-    handle_events()
-    draw()
-    ball_object.update()
+#while running:
+#    handle_events()
+#    draw()
+#    ball_object.update()
 
-close_canvas()
+#close_canvas()

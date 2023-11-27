@@ -12,8 +12,8 @@ class Batter:
         self.running = True
 
         # 우타자 초기 위치
-        self.hitter_right_handed_x = 230  # 초기 x 좌표
-        self.hitter_right_handed_y = 150  # 초기 y 좌표
+        self.hitter_right_handed_x = 250  # 초기 x 좌표
+        self.hitter_right_handed_y = 130  # 초기 y 좌표
 
         self.hitter_frame = 0
         self.hitter_idle_frame = 0
@@ -38,10 +38,10 @@ class Batter:
     def draw(self):
         if self.start_hitting:
             self.hitter_right_handed.clip_draw(self.hitter_frame * 80, 0, 80, 80,
-                self.hitter_right_handed_x, self.hitter_right_handed_y, 490, 300)
+                self.hitter_right_handed_x, self.hitter_right_handed_y, 385, 250)
         else:
             self.idle_hitter_right_handed.clip_draw(self.hitter_idle_frame * 50, 0, 50, 50,
-                        self.hitter_right_handed_x, self.hitter_right_handed_y, 300, 300)
+                        self.hitter_right_handed_x, self.hitter_right_handed_y, 250, 250)
 
     def update(self):
         if self.start_hitting:
