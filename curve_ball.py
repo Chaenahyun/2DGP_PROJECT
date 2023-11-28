@@ -2,8 +2,10 @@
 from pico2d import *
 import math
 
+
 class Curve_Ball:
     def __init__(self, x, y, speed, delay, size=15):
+        self.ball = load_image("ball.png")  # 이미지 파일의 경로를 정확하게 지정
         self.initial_x, self.initial_y = x, y
         self.x, self.y = x, y
         self.speed = speed
@@ -14,11 +16,23 @@ class Curve_Ball:
         self.t = 0.0
         self.points = []
         self.start_pitching = False
-        self.curve_ball = None  # 초기값을 None으로 설정
-        self.load_images()
+        self.curve_ball = self.ball  # 이미지를 할당
 
-    def load_images(self):
-        self.curve_ball = load_image('ball.png')
+    def handle_events(self, ball_object=None):
+        global running
+        events = get_events()
+        for event in events:
+            if event.type == SDL_QUIT:
+                running = False
+            elif event.type == SDL_KEYDOWN:
+                if event.key == SDLK_ESCAPE:
+                    running = False
+                elif event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
+                    target_index = int(event.key - SDLK_1)
+                    ball_object.set_target_position(target_index)
+                elif event.key in [SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h]:
+                    target_index = int(event.key - SDLK_a)
+                    ball_object.set_target_position(target_index, is_strike=False)
 
     def get_bezier_point(self, p0, p1, p2, p3, t):
         u = 1 - t
@@ -55,6 +69,11 @@ class Curve_Ball:
             else:
                 self.set_target(target_positions_ball[index])
 
+    def draw(self):
+        if self.start_pitching and self.t <= 1.0:
+            self.curve_ball.draw(self.x, self.y, self.size, self.size)
+            self.size += 0.1
+
     def update(self):
         if self.start_pitching and self.t <= 1.0:
             elapsed_time = get_time()
@@ -79,14 +98,7 @@ class Curve_Ball:
 
                 if self.t > 1.0:
                     self.start_pitching = False
-
-                delay(0.001)
-
-    def draw(self):
-        if self.start_pitching and self.t <= 1.0:
-            self.curve_ball.draw(self.x, self.y, self.size, self.size)
-            self.size += 0.1
-
+                    self.size = 15  # 초기 크기로 되돌림
 
 # 초기 위치
 initial_ball_x, initial_ball_y = (380, 200)
@@ -103,39 +115,3 @@ target_positions_ball = [
     (350, 125), (465, 125), (350, 50),
     (405, 50), (470, 50)
 ]
-
-ball_object = Curve_Ball(initial_ball_x, initial_ball_y, 5, 0.02)
-
-# 시작 여부
-running = True
-
-# 핸들 이벤트
-def handle_events():
-    global running
-    events = get_events()
-    for event in events:
-        if event.type == SDL_QUIT:
-            running = False
-        elif event.type == SDL_KEYDOWN:
-            if event.key == SDLK_ESCAPE:
-                running = False
-            elif event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
-                target_index = int(event.key - SDLK_1)
-                ball_object.set_target_position(target_index)
-            elif event.key in [SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h]:
-                target_index = int(event.key - SDLK_a)
-                ball_object.set_target_position(target_index, is_strike=False)
-
-# 애니메이션 재생
-#def draw():
-#    clear_canvas()
-#    ball_object.draw()
-#    update_canvas()
-
-# 메인 루프
-#while running:
-#    handle_events()
-#    draw()
-#    ball_object.update()
-
-#close_canvas()

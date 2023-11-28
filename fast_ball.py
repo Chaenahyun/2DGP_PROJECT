@@ -1,12 +1,11 @@
+# fast_ball.py
 from pico2d import *
 
 class Fast_Ball:
     def __init__(self):
         self.ball = load_image('ball.png')
-        self.running = True
         self.start_pitching = False
         self.ball_x, self.ball_y = 0, 0
-        self.pitcher_x, self.pitcher_y = 400, 200
         self.speed = 5
         self.ball_frame = 0
         self.ball_frame_count = 8
@@ -14,15 +13,14 @@ class Fast_Ball:
         self.ball_size = 15
         self.target_x, self.target_y = 0, 0
 
+
     def handle_events(self):
         events = get_events()
         for event in events:
             if event.type == SDL_QUIT:
-                self.running = False
+                self.start_pitching = False
             elif event.type == SDL_KEYDOWN:
-                if event.key == SDLK_ESCAPE:
-                    self.running = False
-                elif event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
+                if event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
                     target_index = int(event.key - SDLK_1)
                     self.set_target_position(target_positions_strike[target_index])
                 elif event.key in [SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h]:
@@ -30,7 +28,6 @@ class Fast_Ball:
                     self.set_target_position(target_positions_ball[target_index])
 
     def set_target_position(self, target):
-        self.clear_canvas()
         if not self.start_pitching:
             self.start_pitching = True
             self.ball_x, self.ball_y = initial_ball_x, initial_ball_y
@@ -41,11 +38,9 @@ class Fast_Ball:
         self.target_x, self.target_y = target
 
     def draw(self):
-        self.clear_canvas()
         if self.start_pitching:
             self.ball.draw(self.ball_x, self.ball_y, self.ball_size, self.ball_size)
-            self.ball_size += 0.2
-        self.update_canvas()
+            #self.ball_size += 0.2
 
     def update(self):
         if self.start_pitching:
@@ -62,17 +57,14 @@ class Fast_Ball:
                 self.ball_x += dir_x * self.speed
                 self.ball_y += dir_y * self.speed
 
+            self.ball_size += 0.
+
             delay(self.ball_delay)
 
             tolerance = 5
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
                 self.start_pitching = False
-
-    def clear_canvas(self):
-        clear_canvas()
-
-    def update_canvas(self):
-        update_canvas()
+                self.ball_size = 15  # 초기 크기로 되돌림
 
 # 초기 위치
 initial_ball_x, initial_ball_y = (380, 200)
