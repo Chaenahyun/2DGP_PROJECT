@@ -2,7 +2,7 @@
 from pico2d import *
 import math
 
-class CurveBall:
+class Curve_Ball:
     def __init__(self, x, y, speed, delay, size=15):
         self.initial_x, self.initial_y = x, y
         self.x, self.y = x, y
@@ -104,7 +104,7 @@ target_positions_ball = [
     (405, 50), (470, 50)
 ]
 
-ball_object = CurveBall(initial_ball_x, initial_ball_y, 5, 0.02)
+ball_object = Curve_Ball(initial_ball_x, initial_ball_y, 5, 0.02)
 
 # 시작 여부
 running = True

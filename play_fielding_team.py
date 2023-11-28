@@ -3,6 +3,7 @@ from pico2d import *
 from ground_fielder import Ground_fielder
 from pitcher import Pitcher
 from batter import Batter
+from fast_ball import Fast_Ball
 
 
 # 캔버스 열기
@@ -16,6 +17,7 @@ running = True
 pitcher = Pitcher()
 batter = Batter()
 ground_fielder = Ground_fielder()
+fast_ball = Fast_Ball
 #curve_ball = Curve_Ball()
 
 def handle_events():
@@ -35,6 +37,7 @@ def update():
     ground_fielder.update()
     pitcher.update()
     batter.update()
+    fast_ball.update()
     #curve_ball.update()
 
 def draw():
@@ -42,6 +45,7 @@ def draw():
     ground_fielder.draw()
     pitcher.draw()
     batter.draw()
+    fast_ball.draw()
     #curve_ball.draw()
     update_canvas()
 
