@@ -1,7 +1,7 @@
 # fast_ball.py
 from pico2d import *
 
-class Fast_Ball:
+class Fast_ball:
     def __init__(self):
         self.ball = load_image('resource/ball.png')
         self.start_pitching = False

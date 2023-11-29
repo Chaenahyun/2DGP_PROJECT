@@ -3,7 +3,7 @@ from pico2d import *
 from ground_hitting_and_pitching import Ground_hitting_and_pitching
 from pitcher import Pitcher
 from batter import Batter
-from fast_ball import Fast_Ball, target_positions_strike, target_positions_ball
+from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
 from breaking_ball import Breaking_ball
 
 # 캔버스 열기
@@ -17,7 +17,7 @@ running = True
 pitcher = Pitcher()
 batter = Batter()
 ground_hitting_and_pitching = Ground_hitting_and_pitching()
-fast_ball = Fast_Ball()
+fast_ball = Fast_ball()
 breaking_ball = Breaking_ball(380, 200, 5, 0.02)
 
 

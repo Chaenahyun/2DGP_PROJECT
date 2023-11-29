@@ -1,5 +1,5 @@
 from pico2d import *
-from fast_ball import Fast_Ball, target_positions_strike, target_positions_ball
+from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
 from breaking_ball import Breaking_ball
 
 class Pitcher:
@@ -7,15 +7,18 @@ class Pitcher:
         self.idle_image = load_image('resource/idle_pitcher.png')
         self.pitching_image = load_image('resource/pitching_pitcher.png')
 
-        self.x, self.y = 400, 200
-        self.frame = 0
-        self.idle_frame_count = 8
-        self.pitching_frame_count = 8
-        self.idle_delay = 0.3
-        self.pitching_delay = 0.01
+        self.pitcher_x, self.pitcher_y = 400, 200
+
+        self.pitcher_frame = 0
+        self.pitcher_idle_frame = 0
+
+        self.pitcher_idle_frame_count = 8
+        self.pitcher_frame_count = 8
 
         self.start_pitching = False
-        self.fast_ball = Fast_Ball()
+
+        self.fast_ball = Fast_ball()
+        self.breaking_ball = Breaking_ball
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
@@ -34,18 +37,22 @@ class Pitcher:
                     # fast_ball 객체에 접근하여 set_target_position 호출
                     self.fast_ball.set_target_position(target_positions_ball[target_index])
 
-    def update(self):
-        if self.start_pitching:
-            self.frame = (self.frame + 1) % self.pitching_frame_count
-
-            if self.frame == 0:
-                self.start_pitching = False
-        else:
-            self.frame = (self.frame + 1) % self.idle_frame_count
 
     def draw(self):
         if self.start_pitching:
-            self.pitching_image.clip_draw(self.frame * 45, 0, 45, 45, self.x, self.y, 100, 100)
+            self.pitching_image.clip_draw(self.pitcher_frame * 45, 0, 45, 45,
+                            self.pitcher_x, self.pitcher_y, 100, 100)
         else:
-            self.idle_image.clip_draw(self.frame * 45, 0, 45, 45, self.x, self.y, 100, 100)
+            self.idle_image.clip_draw(self.pitcher_frame * 45, 0, 45, 45,
+                            self.pitcher_x, self.pitcher_y, 100, 100)
+
+    def update(self):
+        if self.start_pitching:
+            self.pitcher_frame = (self.pitcher_frame + 1) % self.pitcher_frame_count
+
+            if self.pitcher_frame == 0:
+                self.start_pitching = False
+
+        if not self.start_pitching:
+            self.pitcher_idle_frame = (self.pitcher_idle_frame + 1) % self.pitcher_idle_frame_count
 
