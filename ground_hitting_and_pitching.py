@@ -1,9 +1,10 @@
-#ground_fielder.py
+#ground_hitting_and_pitching.py
+
 from pico2d import *
 
-class Ground_fielder:
+class Ground_hitting_and_pitching:
     def __init__(self):
-        self.image = load_image('ground_fielder.png')
+        self.image = load_image('resource/ground_hitting_and_pitching.png')
 
     def draw(self):
         self.image.draw(800 // 2, 450 // 2)

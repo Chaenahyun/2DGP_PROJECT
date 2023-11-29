@@ -16,14 +16,14 @@ class Runner:
         self.speed = speed
 
         # Load images
-        self.running_runner_to_left = load_image('running_runner_left.png')
-        self.running_runner_to_right = load_image('running_runner_right.png')
-        self.idle_runner = load_image('idle_runner_left.png')
+        self.running_runner_to_left = load_image('resource/running_runner_left.png')
+        self.running_runner_to_right = load_image('resource/running_runner_right.png')
+        self.idle_runner = load_image('resource/idle_runner_left.png')
 
-        self.first_base = load_image('base.png')
-        self.second_base = load_image('base.png')
-        self.third_base = load_image('base.png')
-        self.home_base = load_image('home_base.png')
+        self.first_base = load_image('resource/base.png')
+        self.second_base = load_image('resource/base.png')
+        self.third_base = load_image('resource/base.png')
+        self.home_base = load_image('resource/home_base.png')
 
     def move_to_base(self, base_index):
         self.move_arrow_x, self.move_arrow_y = base_positions[base_index]
@@ -83,6 +83,3 @@ base_positions = [
     (300, 72),  # 3루 베이스
     (398, 23)  # 홈 베이스
 ]
-
-# Initialize the Runner object
-#runner = Runner(420, 30, 5, 8, 8, 0.1, 0.5)

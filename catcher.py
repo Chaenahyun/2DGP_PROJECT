@@ -2,10 +2,10 @@ from pico2d import *
 
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
-ground = load_image('ground_full.png')
+ground = load_image('resource/ground_full.png')
 
-catching_catcher = load_image('catching_catcher.png')
-idle_catcher = load_image('idle_catcher.png')
+catching_catcher = load_image('resource/catching_catcher.png')
+idle_catcher = load_image('resource/idle_catcher.png')
 
 #시작 여부
 running = True

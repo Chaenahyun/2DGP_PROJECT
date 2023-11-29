@@ -2,8 +2,8 @@ from pico2d import *
 
 class Pitcher:
     def __init__(self):
-        self.idle_image = load_image('idle_pitcher.png')
-        self.pitching_image = load_image('pitching_pitcher.png')
+        self.idle_image = load_image('resource/idle_pitcher.png')
+        self.pitching_image = load_image('resource/pitching_pitcher.png')
 
         self.x, self.y = 400, 200
         self.frame = 0

@@ -5,7 +5,7 @@ import math
 
 class Curve_Ball:
     def __init__(self, x, y, speed, delay, size=15):
-        self.ball = load_image("ball.png")  # 이미지 파일의 경로를 정확하게 지정
+        self.ball = load_image("resource/ball.png")  # 이미지 파일의 경로를 정확하게 지정
         self.initial_x, self.initial_y = x, y
         self.x, self.y = x, y
         self.speed = speed

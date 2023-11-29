@@ -3,7 +3,7 @@ from pico2d import *
 
 class Fast_Ball:
     def __init__(self):
-        self.ball = load_image('ball.png')
+        self.ball = load_image('resource/ball.png')
         self.start_pitching = False
         self.ball_x, self.ball_y = 0, 0
         self.speed = 5

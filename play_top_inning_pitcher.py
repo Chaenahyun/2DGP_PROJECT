@@ -1,7 +1,7 @@
 #play_fielding_team.py
 
 from pico2d import *
-from ground_fielder import Ground_fielder
+from ground_hitting_and_pitching import Ground_hitting_and_pitching
 from pitcher import Pitcher
 from batter import Batter
 from fast_ball import Fast_Ball, target_positions_strike, target_positions_ball
@@ -17,7 +17,7 @@ running = True
 # 객체 생성
 pitcher = Pitcher()
 batter = Batter()
-ground_fielder = Ground_fielder()
+ground_hitting_and_pitching = Ground_hitting_and_pitching()
 fast_ball = Fast_Ball()
 curve_ball = Curve_Ball(380, 200, 5, 0.02)
 
@@ -47,7 +47,7 @@ def handle_events():
 
 
 def update():
-    ground_fielder.update()
+    ground_hitting_and_pitching.update()
     pitcher.update()
     batter.update()
     fast_ball.update()
@@ -55,7 +55,7 @@ def update():
 
 def draw():
     clear_canvas()
-    ground_fielder.draw()
+    ground_hitting_and_pitching.draw()
     pitcher.draw()
     batter.draw()
     fast_ball.draw()
