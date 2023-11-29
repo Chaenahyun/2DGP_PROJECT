@@ -20,6 +20,11 @@ class Runner:
         self.running_runner_to_right = load_image('running_runner_right.png')
         self.idle_runner = load_image('idle_runner_left.png')
 
+        self.first_base = load_image('base.png')
+        self.second_base = load_image('base.png')
+        self.third_base = load_image('base.png')
+        self.home_base = load_image('home_base.png')
+
     def move_to_base(self, base_index):
         self.move_arrow_x, self.move_arrow_y = base_positions[base_index]
         self.current_base_index = base_index
@@ -51,13 +56,13 @@ class Runner:
 
         for base_index, (base_x, base_y) in enumerate(base_positions):
             if base_index == 0:
-                first_base.draw(base_x, base_y, 15, 15)
+                self.first_base.draw(base_x, base_y, 15, 15)
             elif base_index == 1:
-                second_base.draw(base_x, base_y, 15, 15)
+                self.second_base.draw(base_x, base_y, 15, 15)
             elif base_index == 2:
-                third_base.draw(base_x, base_y, 15, 15)
+                self.third_base.draw(base_x, base_y, 15, 15)
             elif base_index == 3:
-                home_base.draw(base_x, base_y, 15, 15)
+                self.home_base.draw(base_x, base_y, 15, 15)
 
         if self.start_running:
             if self.current_base_index in [1, 2]:
@@ -70,15 +75,6 @@ class Runner:
             self.idle_runner.clip_draw(self.runner_idle_frame * 45, 0, 45, 45,
                                   self.x, self.y, 30, 30)
 
-        update_canvas()
-
-# 이미지 이름
-running_runner_to_left = load_image('running_runner_left.png')
-running_runner_to_right = load_image('running_runner_right.png')
-idle_runner = load_image('idle_runner_left.png')
-
-# 현재 베이스의 인덱스
-current_base_index = 0
 
 # 베이스 위치
 base_positions = [
@@ -88,11 +84,5 @@ base_positions = [
     (398, 23)  # 홈 베이스
 ]
 
-# 베이스 이미지
-first_base = load_image('base.png')
-second_base = load_image('base.png')
-third_base = load_image('base.png')
-home_base = load_image('home_base.png')
-
 # Initialize the Runner object
-runner = Runner(420, 30, 5, 8, 8, 0.1, 0.5)
+#runner = Runner(420, 30, 5, 8, 8, 0.1, 0.5)
