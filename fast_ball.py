@@ -69,6 +69,7 @@ class Fast_Ball:
 # 초기 위치
 initial_ball_x, initial_ball_y = (380, 200)
 
+
 # 목표 위치
 target_positions_strike = [
     (380, 150), (405, 150), (430, 150),

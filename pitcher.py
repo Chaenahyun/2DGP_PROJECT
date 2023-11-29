@@ -25,6 +25,15 @@ class Pitcher:
                                SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h] and not self.start_pitching:
                 self.start_pitching = True
 
+                if event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
+                    target_index = int(event.key - SDLK_1)
+                    # fast_ball 객체에 접근하여 set_target_position 호출
+                    self.fast_ball.set_target_position(target_positions_strike[target_index])
+                elif event.key in [SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h]:
+                    target_index = int(event.key - SDLK_a)
+                    # fast_ball 객체에 접근하여 set_target_position 호출
+                    self.fast_ball.set_target_position(target_positions_ball[target_index])
+
     def update(self):
         if self.start_pitching:
             self.frame = (self.frame + 1) % self.pitching_frame_count
