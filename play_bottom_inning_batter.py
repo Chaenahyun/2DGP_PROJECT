@@ -4,7 +4,7 @@ from ground_hitting_and_pitching import Ground_hitting_and_pitching
 from pitcher import Pitcher
 from batter import Batter
 from fast_ball import Fast_Ball, target_positions_strike, target_positions_ball
-from curve_ball import Curve_Ball
+from breaking_ball import Breaking_ball
 
 # 캔버스 열기
 ground_width, ground_height = 800, 450
@@ -18,7 +18,7 @@ pitcher = Pitcher()
 batter = Batter()
 ground_hitting_and_pitching = Ground_hitting_and_pitching()
 fast_ball = Fast_Ball()
-curve_ball = Curve_Ball(380, 200, 5, 0.02)
+breaking_ball = Breaking_ball(380, 200, 5, 0.02)
 
 # play_fielding_team.py의 handle_events 함수
 def handle_events():
@@ -49,7 +49,7 @@ def update():
     pitcher.update()
     batter.update()
     fast_ball.update()
-    curve_ball.update()
+    breaking_ball.update()
 
 def draw():
     clear_canvas()
@@ -57,7 +57,7 @@ def draw():
     pitcher.draw()
     batter.draw()
     fast_ball.draw()
-    curve_ball.draw()
+    breaking_ball.draw()
     update_canvas()
 
 while running:
