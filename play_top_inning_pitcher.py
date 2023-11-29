@@ -1,5 +1,4 @@
-#play_fielding_team.py
-
+#play_top_inning_pitcher.py
 from pico2d import *
 from ground_hitting_and_pitching import Ground_hitting_and_pitching
 from pitcher import Pitcher
