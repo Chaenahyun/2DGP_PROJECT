@@ -1,6 +1,6 @@
 #play_top_inning_pitcher.py
 from pico2d import *
-from ground_hitting_and_pitching import Ground_hitting_and_pitching
+from ground_batting_and_pitching import Ground_batting_and_pitching
 from pitcher import Pitcher
 from batter import Batter
 from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
@@ -16,7 +16,7 @@ running = True
 # 객체 생성
 pitcher = Pitcher()
 batter = Batter()
-ground_hitting_and_pitching = Ground_hitting_and_pitching()
+ground_batting_and_pitching = Ground_batting_and_pitching()
 fast_ball = Fast_ball()
 breaking_ball = Breaking_ball(380, 200, 5, 0.02)
 
@@ -32,7 +32,7 @@ def handle_events():
             batter.handle_events()
 
             if event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-                batter.start_hitting = True
+                batter.start_batting = True
 
             elif event.type == SDL_KEYDOWN:
                 if event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
@@ -46,7 +46,7 @@ def handle_events():
 
 
 def update():
-    ground_hitting_and_pitching.update()
+    ground_batting_and_pitching.update()
     pitcher.update()
     batter.update()
     fast_ball.update()
@@ -54,7 +54,7 @@ def update():
 
 def draw():
     clear_canvas()
-    ground_hitting_and_pitching.draw()
+    ground_batting_and_pitching.draw()
     pitcher.draw()
     batter.draw()
     fast_ball.draw()
