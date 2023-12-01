@@ -1,7 +1,7 @@
 #ground_full.py
 from pico2d import *
 
-class Ground_fielder:
+class Ground_full:
     def __init__(self):
         self.image = load_image('resource/ground_full.png')
 

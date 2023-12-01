@@ -1,5 +1,10 @@
 from pico2d import *
+import game_framework
 import random
+
+TIME_PER_ACTION = 0.5
+ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
+FRAMES_PER_ACTION = 8
 
 class Batter_AI:
     def __init__(self):
@@ -39,7 +44,7 @@ class Batter_AI:
         self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
 
         if self.start_hitting:
-            if random.random()< 0.3:
+            if random.random()< 0.6:
                 self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
 
                 if self.hitter_frame == 0:
