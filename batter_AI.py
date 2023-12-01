@@ -1,6 +1,7 @@
 from pico2d import *
+import random
 
-class Batter:
+class Batter_AI:
     def __init__(self):
         # 타자 sprite
         self.hitter_left_handed = load_image('resource/hitter_left_handed.png')
@@ -21,19 +22,10 @@ class Batter:
         self.hitter_frame_count = 8
         self.hitter_idle_frame_count = 8
 
-        self.hitting_delay = 0.01
-        self.hitter_idle_delay = 0.3
-
         self.start_hitting = False
 
     def handle_events(self):
-        events = get_events()
-        for event in events:
-            if event.type == SDL_QUIT:
-                self.running = False
-            # 마우스 좌클릭 시 스윙
-            elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-                self.start_hitting = True
+        pass
 
     def draw(self):
         if self.start_hitting:
@@ -44,14 +36,11 @@ class Batter:
                         self.hitter_right_handed_x, self.hitter_right_handed_y, 250, 250)
 
     def update(self):
+        self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
+
         if self.start_hitting:
-            self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
-            #delay(self.hitting_delay)
+            if random.random()< 0.3:
+                self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
 
-            if self.hitter_frame == 0:
-                self.start_hitting = False
-
-        # 스윙하지 않을 때는 idle 애니메이션 재생
-        if not self.start_hitting:
-            self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
-            #delay(self.hitter_idle_delay)
+                if self.hitter_frame == 0:
+                    self.start_hitting = False

@@ -58,7 +58,7 @@ class Fast_ball:
 
             self.ball_size += 0.8
 
-            tolerance = 5
+            tolerance = 10
 
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
                 self.start_pitching = False
