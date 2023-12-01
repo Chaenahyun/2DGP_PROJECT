@@ -2,10 +2,9 @@
 from pico2d import *
 import math
 
-
 class Breaking_ball:
     def __init__(self, x, y, speed, delay, size=15):
-        self.ball = load_image("resource/ball.png")  # 이미지 파일의 경로를 정확하게 지정
+        self.ball = load_image("resource/ball.png")
         self.initial_x, self.initial_y = x, y
         self.x, self.y = x, y
         self.speed = speed
@@ -16,7 +15,7 @@ class Breaking_ball:
         self.t = 0.0
         self.points = []
         self.start_pitching = False
-        self.curve_ball = self.ball  # 이미지를 할당
+        self.curve_ball = self.ball
 
     def handle_events(self, ball_object=None):
         global running
