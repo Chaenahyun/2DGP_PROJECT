@@ -40,7 +40,6 @@ class Fast_ball:
     def draw(self):
         if self.start_pitching:
             self.ball.draw(self.ball_x, self.ball_y, self.ball_size, self.ball_size)
-            #self.ball_size += 1
 
     def update(self):
         if self.start_pitching:
@@ -57,16 +56,13 @@ class Fast_ball:
                 self.ball_x += dir_x * self.speed
                 self.ball_y += dir_y * self.speed
 
-            self.ball_size += 0.5
+            self.ball_size += 0.8
 
             tolerance = 5
 
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
                 self.start_pitching = False
                 self.ball_size = 15  # 초기 크기로 되돌림
-
-
-
 
 # 목표 위치
 target_positions_strike = [
