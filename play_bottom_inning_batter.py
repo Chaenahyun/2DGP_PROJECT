@@ -1,7 +1,10 @@
-#play_top_inning_pitcher.py
+#play_top_inning_batter.py
+#공격 이닝(말)
+#투수: AI / 타자: 플레이어
 from pico2d import *
+import game_framework
 from ground_batting_and_pitching import Ground_batting_and_pitching
-from pitcher import Pitcher
+from pitcher_AI import Pitcher_AI
 from batter import Batter
 from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
 from breaking_ball import Breaking_ball
@@ -14,7 +17,7 @@ open_canvas(ground_width, ground_height)
 running = True
 
 # 객체 생성
-pitcher = Pitcher()
+pitcher_AI = Pitcher_AI()
 batter = Batter()
 ground_batting_and_pitching = Ground_batting_and_pitching()
 fast_ball = Fast_ball()
@@ -28,34 +31,25 @@ def handle_events():
         if event.type == SDL_QUIT:
             running = False
         else:
-            pitcher.handle_event(event)
+            pitcher_AI.handle_event(event)
             batter.handle_events()
 
             if event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
                 batter.start_batting = True
 
-            elif event.type == SDL_KEYDOWN:
-                if event.key in [SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, SDLK_9]:
-                    target_index = int(event.key - SDLK_1)
-                    # fast_ball 객체에 접근하여 set_target_position 호출
-                    fast_ball.set_target_position(target_positions_strike[target_index])
-                elif event.key in [SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f, SDLK_g, SDLK_h]:
-                    target_index = int(event.key - SDLK_a)
-                    # fast_ball 객체에 접근하여 set_target_position 호출
-                    fast_ball.set_target_position(target_positions_ball[target_index])
-
 
 def update():
     ground_batting_and_pitching.update()
-    pitcher.update()
+    pitcher_AI.update()
     batter.update()
     fast_ball.update()
     breaking_ball.update()
 
+
 def draw():
     clear_canvas()
     ground_batting_and_pitching.draw()
-    pitcher.draw()
+    pitcher_AI.draw()
     batter.draw()
     fast_ball.draw()
     breaking_ball.draw()
@@ -68,3 +62,4 @@ while running:
     delay(0.1)
 
 close_canvas()
+

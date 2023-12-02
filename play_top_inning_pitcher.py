@@ -1,4 +1,5 @@
 #play_top_inning_pitcher.py
+#수비 이닝(초)
 #투수: 플레이어 / 타자: AI
 from pico2d import *
 import game_framework

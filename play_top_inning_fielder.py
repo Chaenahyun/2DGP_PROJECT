@@ -1,4 +1,4 @@
-#play_bottom_inning_fielder.py
+#play_top_inning_fielder.py
 
 from pico2d import *
 from ground_full import Ground_full
