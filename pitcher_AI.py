@@ -55,7 +55,11 @@ class Pitcher_AI:
 
             if self.pitcher_frame == 0:
                 self.start_pitching = False
-                self.selected_ball = None
+                if self.selected_ball:
+                    self.selected_ball = None
+
+        if self.selected_ball:
+            self.selected_ball.update()
 
         if not self.start_pitching:
             self.pitcher_idle_frame = (self.pitcher_idle_frame + 1) % self.pitcher_idle_frame_count
