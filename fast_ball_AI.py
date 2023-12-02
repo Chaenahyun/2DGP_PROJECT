@@ -17,7 +17,7 @@ class Fast_ball_AI:
         self.target_x, self.target_y = 0, 0
 
     def handle_events(self):
-        pass  # 수정: 더 이상 사용하지 않음
+        pass
 
     def move_ball_randomly(self):
         target_index = random.randint(0, len(target_positions_strike) - 1)
@@ -47,7 +47,6 @@ class Fast_ball_AI:
                 dir_x /= length
                 dir_y /= length
 
-                # 수정: self.speed를 이용하여 매 프레임마다 공의 이동 거리를 조절
                 move_distance = self.speed
                 self.ball_x += dir_x * move_distance
                 self.ball_y += dir_y * move_distance
