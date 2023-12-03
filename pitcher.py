@@ -1,7 +1,8 @@
 from pico2d import *
 from fast_ball import Fast_ball, target_positions_strike as fast_strike_targets, target_positions_ball as fast_ball_targets
 from breaking_ball import Breaking_ball, target_positions_strike as breaking_strike_targets, target_positions_ball as breaking_ball_targets
-from batter_AI import Batter_AI  # batter_AI 모듈 추가
+from batter_AI import Batter_AI
+import random
 
 class Pitcher:
     def __init__(self):
@@ -20,6 +21,7 @@ class Pitcher:
 
         self.selected_ball = None  # 현재 선택된 공 객체를 저장하는 변수
         self.batter_AI = Batter_AI()  # Batter_AI 객체 생성
+        self.hitting_probability = 0.01  # 1%의 확률로 설정
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN:
@@ -55,7 +57,8 @@ class Pitcher:
             if self.pitcher_frame == 0:
                 self.start_pitching = False
                 self.selected_ball = None
-                self.batter_AI.start_hitting = True
 
-        if not self.start_pitching:
+                if random.random() < self.hitting_probability:
+                    self.batter_AI.start_hitting = True
+        else:
             self.pitcher_idle_frame = (self.pitcher_idle_frame + 1) % self.pitcher_idle_frame_count

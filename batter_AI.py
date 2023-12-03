@@ -43,9 +43,12 @@ class Batter_AI:
     def update(self):
         self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
 
-        if self.start_hitting:
-            if random.random()< 0.6:
-                self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
+        # 일정한 확률로 start_hitting을 재생
+        if not self.start_hitting and random.random() <= 0.01:
+            self.start_hitting = True
 
-                if self.hitter_frame == 0:
-                    self.start_hitting = False
+        if self.start_hitting:
+            self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
+
+            if self.hitter_frame == 0:
+                self.start_hitting = False
