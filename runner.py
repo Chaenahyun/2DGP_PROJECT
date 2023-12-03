@@ -3,7 +3,7 @@ import math
 
 class Runner:
     def __init__(self, x, y, speed, frame_count, idle_frame_count, running_delay, running_idle_delay):
-        self.x, self.y = x, y
+        self.x, self.y = 492, 72
         self.move_arrow_x, self.move_arrow_y = x, y
         self.start_running = False
         self.current_base_index = 0

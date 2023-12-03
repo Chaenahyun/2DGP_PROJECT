@@ -1,5 +1,4 @@
 #ground_batting_and_pitching.py
-
 from pico2d import *
 
 class Ground_batting_and_pitching:
