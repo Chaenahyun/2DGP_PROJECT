@@ -32,13 +32,24 @@ class Batter_AI:
     def handle_events(self):
         pass
 
+    def get_bb(self):
+        #배트 바운딩 박스
+        half_width = 15  # 바운딩 박스 가로 크기의 절반
+        half_height = 10  # 바운딩 박스 세로 크기의 절반
+        offset_x = 150
+        return (self.hitter_right_handed_x - half_width+ offset_x, self.hitter_right_handed_y - half_height,
+                self.hitter_right_handed_x + half_width+ offset_x, self.hitter_right_handed_y + half_height)
+
     def draw(self):
         if self.start_hitting:
             self.hitter_right_handed.clip_draw(self.hitter_frame * 80, 0, 80, 80,
                 self.hitter_right_handed_x, self.hitter_right_handed_y, 385, 250)
+            draw_rectangle(*self.get_bb())
+
         else:
             self.idle_hitter_right_handed.clip_draw(self.hitter_idle_frame * 50, 0, 50, 50,
                         self.hitter_right_handed_x, self.hitter_right_handed_y, 250, 250)
+
 
     def update(self):
         self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
