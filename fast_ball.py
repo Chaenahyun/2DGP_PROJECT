@@ -1,6 +1,9 @@
 # fast_ball.py
 from pico2d import *
 
+import game_framework
+import play_top_inning_fielder
+
 class Fast_ball:
     def __init__(self):
         self.ball = load_image('resource/ball.png')
@@ -39,6 +42,11 @@ class Fast_ball:
 
     def get_bb(self):
         return self.ball_x - 10, self.ball_y - 10, self.ball_x + 10, self.ball_y + 10
+
+    def handle_collision(self, group, other):
+        if group == 'batter_AI:fast_ball':
+            print(f'{group}과 충돌 감지!')
+            game_framework.change_mode(play_top_inning_fielder)
 
     def draw(self):
         if self.start_pitching:

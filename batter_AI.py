@@ -1,6 +1,10 @@
+#batter_AI.py
+
 from pico2d import *
-#import game_framework
 import random
+
+import game_framework
+import play_top_inning_fielder
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -40,6 +44,13 @@ class Batter_AI:
         return (self.hitter_right_handed_x - half_width+ offset_x, self.hitter_right_handed_y - half_height,
                 self.hitter_right_handed_x + half_width+ offset_x, self.hitter_right_handed_y + half_height)
 
+
+    def handle_collision(self, group, other):
+        if group == 'batter_AI:fast_ball':
+            print(f'{group}과 충돌 감지!')
+            game_framework.change_mode(play_top_inning_fielder)
+
+
     def draw(self):
         if self.start_hitting:
             self.hitter_right_handed.clip_draw(self.hitter_frame * 80, 0, 80, 80,
@@ -51,15 +62,17 @@ class Batter_AI:
                         self.hitter_right_handed_x, self.hitter_right_handed_y, 250, 250)
 
 
-    def update(self):
+    def update(self, start_pitching=None):
         self.hitter_idle_frame = (self.hitter_idle_frame + 1) % self.hitter_idle_frame_count
 
         # 일정한 확률로 start_hitting을 재생
-        if not self.start_hitting and random.random() <= 0.01:
+        if start_pitching and not self.start_hitting and random.random() <= 0.1:
             self.start_hitting = True
+            print(f'스윙!')
 
         if self.start_hitting:
             self.hitter_frame = (self.hitter_frame + 1) % self.hitter_frame_count
+            #print(f'스윙!')
 
             if self.hitter_frame == 0:
                 self.start_hitting = False

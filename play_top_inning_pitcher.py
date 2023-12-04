@@ -2,7 +2,8 @@
 #수비 이닝(초)
 #투수: 플레이어 / 타자: AI
 from pico2d import *
-#import game_framework
+from game_world import collide
+import play_top_inning_fielder
 from ground_batting_and_pitching import Ground_batting_and_pitching
 from pitcher import Pitcher
 from batter_AI import Batter_AI
@@ -48,6 +49,12 @@ def handle_events():
                     fast_ball.set_target_position(target_positions_ball[target_index])
                     batter_AI.start_hitting = True
 
+def handle_collision():
+    global running
+    # 현재는 함수의 매개변수로 self를 받지 않는데, self가 필요한 경우 self를 전달하도록 변경해야 합니다.
+    if collide(batter_AI, fast_ball):
+        batter_AI.handle_collision('batter_AI:fast_ball', fast_ball)
+
 
 def update():
     ground_batting_and_pitching.update()
@@ -55,6 +62,8 @@ def update():
     batter_AI.update()
     fast_ball.update()
     breaking_ball.update()
+    handle_collision()
+
 
 def draw():
     clear_canvas()
@@ -68,6 +77,7 @@ def draw():
 while running:
     handle_events()
     update()
+    handle_collision()
     draw()
     delay(0.1)
 

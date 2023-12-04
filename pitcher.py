@@ -53,7 +53,7 @@ class Pitcher:
     def update(self):
         if self.start_pitching:
             self.pitcher_frame = (self.pitcher_frame + 1) % self.pitcher_frame_count
-
+            print(f'start!')
             if self.pitcher_frame == 0:
                 self.start_pitching = False
                 self.selected_ball = None
