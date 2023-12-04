@@ -21,6 +21,11 @@ class Batter:
         self.running = True
         self.start_batting = False
 
+        if not hasattr(self, 'batting_sound'):
+            self.batting_sound = load_wav('resource_music/miss.WAV')
+            self.batting_sound.set_volume(100)
+
+
     def handle_events(self):
         events = get_events()
         for event in events:

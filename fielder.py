@@ -2,6 +2,12 @@ from pico2d import *
 
 class Fielder:
     def __init__(self):
+        self.idle_image = load_image('resource/idle_defender.png')
+        self.running_left_image = load_image('resource/running_defender_to_left.png')
+        self.running_right_image = load_image('resource/running_defender_to_right.png')
+        self.running_right_image = load_image('resource/catching_and_throwing_defender.png')
+        self.running_right_image = load_image('resource/catching_ground_ball_and_throwing_defender.png')
+        self.running_right_image = load_image('resource/jump_catching_and_throwing_defender.png')
         self.x = 400
         self.y = 160
         self.frame = 0
@@ -11,12 +17,6 @@ class Fielder:
         self.character_height = 60
         self.is_idle = True
         self.idle_frame = 0
-        self.character_images = [load_image('resource/idle_defender.png'),
-                                 load_image('resource/running_defender_to_left.png'),
-                                 load_image('resource/running_defender_to_right.png'),
-                                 load_image('resource/catching_and_throwing_defender.png'),
-                                 load_image('resource/catching_ground_ball_and_throwing_defender.png'),
-                                 load_image('resource/jump_catching_and_throwing_defender.png')]
 
     def handle_events(self):
         events = get_events()
@@ -69,5 +69,9 @@ class Fielder:
         self.idle_frame = (self.idle_frame + 1) % 8
 
     def draw(self):
-        character_image = self.character_images[0] if self.is_idle else self.character_images[self.frame % 6]
-        character_image.clip_draw(0, 0, 45, 45, self.x, self.y, 30, 30)
+        if self.is_idle:
+            character_image = self.character_images[0]
+            character_image.clip_draw(0, 0, 45, 45, self.x, self.y, 30, 30)
+        else:
+            character_image = self.character_images[self.frame % 6]
+            character_image.clip_draw(0, 0, 45, 45, self.x, self.y, 30, 30)

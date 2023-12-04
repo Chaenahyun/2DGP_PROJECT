@@ -20,18 +20,28 @@ class Pitcher_AI:
         self.start_pitching = False
         self.selected_ball = None
 
+        if not hasattr(self, 'pitching_sound'):
+            self.pitching_sound = load_wav('resource_music/pitching.WAV')
+            self.pitching_sound.set_volume(100)
+
     def throw_random_ball(self):
         ball_type = random.choice(["fast", "breaking"])
         if ball_type == "fast":
             self.selected_ball = Fast_ball_AI()
             target_index = random.randint(0, len(fast_strike_targets) - 1)
             self.selected_ball.set_target_position(fast_strike_targets[target_index])
+            self.start_pitching = True
+            self.pitching_sound.play()
         elif ball_type == "breaking":
             self.selected_ball = Breaking_ball_AI(400, 200, 10, 0.0)
             target_index = random.randint(0, len(breaking_strike_targets) - 1)
             self.selected_ball.set_target_position(target_index)
+            self.start_pitching = True
+            self.pitching_sound.play()
         else:
             self.selected_ball = None
+            self.start_pitching = True
+            self.pitching_sound.play()
 
     def handle_event(self, event):
         if event.type == SDL_KEYDOWN and event.key == SDLK_SPACE and not self.start_pitching:

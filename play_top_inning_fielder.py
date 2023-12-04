@@ -13,6 +13,7 @@ from hit import Hit
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 
+
 # 시작 여부
 running = True
 

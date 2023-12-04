@@ -23,6 +23,9 @@ ground_batting_and_pitching = Ground_batting_and_pitching()
 fast_ball = Fast_ball()
 breaking_ball = Breaking_ball(380, 200, 5, 0.02)
 
+bgm = load_music('resource_music/bg2.WAV')
+bgm.set_volume(32)
+bgm.repeat_play()
 
 def handle_events():
     global running
