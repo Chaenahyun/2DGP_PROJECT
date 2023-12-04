@@ -36,24 +36,26 @@ def handle_events():
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             game_framework.quit()
-        else:
-            pitcher.handle_event(event)
-            pitcher_AI.handle_event(event)
-            batter.handle_event(event)
-            batter_AI.handle_event(event)
-            runner.handle_event(event)
-            #catcher.handle_event(event)
-            fielder.handle_event(event)
+        # else:
+        #     pitcher.handle_event(event)
+        #     pitcher_AI.handle_event(event)
+        #     batter.handle_event(event)
+        #     batter_AI.handle_event(event)
+        #     runner.handle_event(event)
+        #     #catcher.handle_event(event)
+        #     fielder.handle_event(event)
 
 
 
 
 def init():
-    global ground_batting_and_pitching, ground_full, pitcher, pitcher_AI, batter, batter_AI, runner, fielder, fast_ball
+    global running, ground_batting_and_pitching, ground_full, pitcher, pitcher_AI, batter, batter_AI, runner, fielder, fast_ball
+
+    running = True
+
     #map
     ground_batting_and_pitching = Ground_batting_and_pitching()
     game_world.add_object(ground_batting_and_pitching, 0)
-
     ground_full = Ground_full()
     game_world.add_object(ground_full, 0)
 

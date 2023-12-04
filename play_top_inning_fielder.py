@@ -9,15 +9,7 @@ from fielder import Fielder
 from hit import Hit
 
 
-def init():
-    global runner, fielder, ground_full, hit
-    runner = Runner(x=200, y=200, speed=5, frame_count=8, idle_frame_count=8, running_delay=0.1, running_idle_delay=0.3)
-    fielder = Fielder()
-    ground_full = Ground_full()
-    hit = Hit()
-
-
-# 캔버스 열기
+# 창 열기
 ground_width, ground_height = 800, 450
 open_canvas(ground_width, ground_height)
 
@@ -29,6 +21,15 @@ runner = Runner(x=200, y=200, speed=5, frame_count=8, idle_frame_count=8, runnin
 fielder = Fielder()
 ground_full = Ground_full()
 hit = Hit()
+
+
+def init():
+    print("play_top_inning_fielder init called!")
+    global runner, fielder, ground_full, hit
+    runner = Runner(x=200, y=200, speed=5, frame_count=8, idle_frame_count=8, running_delay=0.1, running_idle_delay=0.3)
+    fielder = Fielder()
+    ground_full = Ground_full()
+    hit = Hit()
 
 
 def handle_events():

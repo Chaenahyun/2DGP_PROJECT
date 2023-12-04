@@ -3,7 +3,6 @@
 #투수: 플레이어 / 타자: AI
 from pico2d import *
 from game_world import collide
-import play_top_inning_fielder
 from ground_batting_and_pitching import Ground_batting_and_pitching
 from pitcher import Pitcher
 from batter_AI import Batter_AI

@@ -4,7 +4,7 @@ from pico2d import *
 import random
 
 import game_framework
-import play_top_inning_fielder
+
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -48,7 +48,7 @@ class Batter_AI:
     def handle_collision(self, group, other):
         if group == 'batter_AI:fast_ball':
             print(f'{group}과 충돌 감지!')
-            game_framework.change_mode(play_top_inning_fielder)
+            #game_framework.push_mode(play_top_inning_fielder)
 
 
     def draw(self):
