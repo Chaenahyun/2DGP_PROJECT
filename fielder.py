@@ -75,6 +75,7 @@ class Fielder:
             if self.y + self.dir_y * 5 + self.character_height // 2 <= 450:
                 self.y += self.dir_y * 5
             self.frame = (self.frame + 1) % 8
+
         elif self.dir_y < 0:
             if self.y + self.dir_y * 5 - self.character_height // 2 >= 0:
                 self.y += self.dir_y * 5
