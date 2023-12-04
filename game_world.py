@@ -1,4 +1,3 @@
-#game_world.py
 
 objects = [[] for _ in range(4)]
 collision_pairs = {}
@@ -14,6 +13,7 @@ def update():
     for layer in objects:
         for o in layer:
             o.update()
+
 
 def render():
     for layer in objects:

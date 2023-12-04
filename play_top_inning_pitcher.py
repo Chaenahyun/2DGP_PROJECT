@@ -2,7 +2,7 @@
 #수비 이닝(초)
 #투수: 플레이어 / 타자: AI
 from pico2d import *
-import game_framework
+#import game_framework
 from ground_batting_and_pitching import Ground_batting_and_pitching
 from pitcher import Pitcher
 from batter_AI import Batter_AI

@@ -1,5 +1,5 @@
 from pico2d import *
-import game_framework
+#import game_framework
 import random
 
 TIME_PER_ACTION = 0.5

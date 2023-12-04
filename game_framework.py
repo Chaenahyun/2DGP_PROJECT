@@ -1,5 +1,3 @@
-#game_framework.py
-
 import time
 
 
