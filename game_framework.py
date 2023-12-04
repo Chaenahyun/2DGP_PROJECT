@@ -4,7 +4,7 @@ stack = []
 
 def change_mode(mode):
     global stack
-    if (len(stack) > 0):
+    if len(stack) > 0:
         # execute the current mode's finish function
         stack[-1].finish()
         # remove the current mode

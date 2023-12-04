@@ -38,8 +38,8 @@ class Batter_AI:
 
     def get_bb(self):
         #배트 바운딩 박스
-        half_width = 15  # 바운딩 박스 가로 크기의 절반
-        half_height = 10  # 바운딩 박스 세로 크기의 절반
+        half_width = 5  # 바운딩 박스 가로 크기의 절반
+        half_height = 5  # 바운딩 박스 세로 크기의 절반
         offset_x = 150
         return (self.hitter_right_handed_x - half_width+ offset_x, self.hitter_right_handed_y - half_height,
                 self.hitter_right_handed_x + half_width+ offset_x, self.hitter_right_handed_y + half_height)

@@ -1,4 +1,4 @@
-#play_top_inning_fielder.py
+# play_top_inning_fielder.py
 
 from pico2d import *
 
@@ -7,6 +7,14 @@ from ground_full import Ground_full
 from runner import Runner
 from fielder import Fielder
 from hit import Hit
+
+
+def init():
+    global runner, fielder, ground_full, hit
+    runner = Runner(x=200, y=200, speed=5, frame_count=8, idle_frame_count=8, running_delay=0.1, running_idle_delay=0.3)
+    fielder = Fielder()
+    ground_full = Ground_full()
+    hit = Hit()
 
 
 # 캔버스 열기
@@ -21,6 +29,7 @@ runner = Runner(x=200, y=200, speed=5, frame_count=8, idle_frame_count=8, runnin
 fielder = Fielder()
 ground_full = Ground_full()
 hit = Hit()
+
 
 def handle_events():
     global running
@@ -45,6 +54,13 @@ def draw():
     hit.draw()
     update_canvas()
 
+
+def finish():
+    global runner, fielder, ground_full, hit
+    del runner
+    del fielder
+    del ground_full
+    del hit
 
 
 while running:
