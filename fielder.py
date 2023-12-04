@@ -70,4 +70,4 @@ class Fielder:
 
     def draw(self):
         character_image = self.character_images[0] if self.is_idle else self.character_images[self.frame % 6]
-        character_image.clip_draw(0, 0, 20, 20, self.x, self.y, 30, 30)
+        character_image.clip_draw(0, 0, 45, 45, self.x, self.y, 30, 30)
