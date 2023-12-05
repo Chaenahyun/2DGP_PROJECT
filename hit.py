@@ -3,6 +3,9 @@ from pico2d import *
 import random
 import server
 
+import json
+import tomllib
+
 class Hit:
     def __init__(self):
         self.ball = load_image('resource/ball.png')

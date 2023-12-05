@@ -65,6 +65,31 @@ def handle_events():
             elif event.key == SDLK_DOWN:
                 fielder.dir_y += 1
 
+
+def create_fielders():
+    # 각 Fielder 객체의 초기 위치를 직접 지정
+    fielder_positions = [
+        (500, 90), #1B
+        (440, 140), #2B
+        (360, 140), #SS
+        (300, 90), #3B
+
+        (200, 250), #LF
+        (400, 300), #CF
+        (600, 250), #RF
+    ]
+
+    for i, (x, y) in enumerate(fielder_positions):
+        # 각 Fielder 객체를 다르게 초기화하여 생성
+        fielder = Fielder()
+        fielder.x, fielder.y = x, y
+        # game_world에 추가
+        game_world.add_object(fielder, 1)
+
+# 게임 초기화 시에 호출하여 Fielder 객체를 생성하고 배치
+create_fielders()
+
+
 def update():
     ground_full.update()
     fielder.update()

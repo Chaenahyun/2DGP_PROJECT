@@ -8,8 +8,8 @@ class Fielder:
         # self.throwing1 = load_image('resource/catching_and_throwing_defender.png')
         # self.throwing2 = load_image('resource/catching_ground_ball_and_throwing_defender.png')
         # self.throwing3 = load_image('resource/jump_catching_and_throwing_defender.png')
-        self.x = 400
-        self.y = 160
+        self.x = 0
+        self.y = 0
         self.frame = 0
         self.dir_x = 0
         self.dir_y = 0
