@@ -6,24 +6,22 @@ from ground_full import Ground_full
 from fielder import Fielder
 from hit import Hit
 
-# # 창 열기
-# ground_width, ground_height = 800, 450
-# open_canvas(ground_width, ground_height)
-
 # 시작 여부
 running = True
+print("play_top_inning_fielder init called!")
 
 # 객체 생성
 ground_full = Ground_full()
 fielder = Fielder()
 hit = Hit()
+hit.move_ball_randomly()
 
 def init():
-    print("play_top_inning_fielder init called!")
     global fielder, ground_full, hit
     fielder = Fielder()
     ground_full = Ground_full()
     hit = Hit()
+    hit.move_ball_randomly()
 
 def handle_events():
     global running
@@ -60,10 +58,6 @@ def handle_events():
                 fielder.dir_y -= 1
             elif event.key == SDLK_DOWN:
                 fielder.dir_y += 1
-
-
-
-
 
 def update():
     ground_full.update()
