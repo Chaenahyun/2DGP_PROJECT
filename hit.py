@@ -16,7 +16,6 @@ class Hit:
         self.target_x, self.target_y = 0, 0
 
 
-
     def handle_events(self):
         pass
 
@@ -58,15 +57,25 @@ class Hit:
 
             tolerance = 30
 
+            # 목표 위치에 도달하면 바운드
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
-                self.hit = False
+                #self.hit = False
+                # 바운드 방향을 반대로 설정
+                dir_x *= -1
+                dir_y *= -1
+                # 이동 거리를 다시 설정하여 반대 방향으로 튕기게 함
+                self.ball_x += dir_x * move_distance
+                self.ball_y += dir_y * move_distance
+                print('굴러가유')
+
+            # if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
+            #     self.hit = False
 
 
 
     def draw(self):
         if self.hit:
             self.ball.draw(self.ball_x, self.ball_y, 10, 10)
-
 
 
 # 목표 위치

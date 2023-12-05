@@ -8,7 +8,6 @@ from fielder import Fielder
 from hit import Hit
 from background import FixedBackground as Background
 
-
 # 시작 여부
 running = True
 print("play_top_inning_fielder init called!")
@@ -96,6 +95,8 @@ create_fielders()
 
 def update():
     ground_full.update()
+
+
     fielder.update()
     hit.update()
     game_world.update()

@@ -1,3 +1,5 @@
+import time
+
 from game_world import objects
 
 running = None
@@ -122,5 +124,10 @@ def clear():
 #         stack[-1].finish()
 #         stack.pop()
 #
+
+
 def frame_time():
     return None
+
+# def frame_time(current_time=None):
+#     return time.time() - current_time if 'current_time' in globals() else 0.0
