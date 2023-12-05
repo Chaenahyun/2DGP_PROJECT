@@ -70,5 +70,6 @@ class Pitcher:
 
                 if random.random() < self.hitting_probability:
                     self.batter_AI.start_hitting = True
+
         else:
             self.pitcher_idle_frame = (self.pitcher_idle_frame + 1) % self.pitcher_idle_frame_count

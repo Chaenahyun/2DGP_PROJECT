@@ -33,6 +33,10 @@ class Batter_AI:
 
         self.start_hitting = False
 
+        if not hasattr(self, 'hitting_sound'):
+            self.hitting_sound = load_wav('resource_music/pitching.WAV')
+            self.hitting_sound.set_volume(100)
+
     def handle_events(self):
         pass
 
@@ -71,6 +75,7 @@ class Batter_AI:
         # 일정한 확률로 start_hitting을 재생
         if start_pitching and not self.start_hitting and random.random() <= 0.1:
             self.start_hitting = True
+            self.hitting_sound.play()
             print(f'스윙!')
 
         if self.start_hitting:
