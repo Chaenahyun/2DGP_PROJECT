@@ -6,9 +6,9 @@ from ground_full import Ground_full
 from fielder import Fielder
 from hit import Hit
 
-# 창 열기
-ground_width, ground_height = 800, 450
-open_canvas(ground_width, ground_height)
+# # 창 열기
+# ground_width, ground_height = 800, 450
+# open_canvas(ground_width, ground_height)
 
 # 시작 여부
 running = True
