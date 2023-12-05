@@ -26,8 +26,8 @@ def init():
     ground_full = Ground_full()
     hit = Hit()
     hit.move_ball_randomly()
-    server.background = Background()
 
+    server.background = Background()
     game_world.add_object(server.background, 0)
     server.fielder = Fielder()
     game_world.add_object(server.fielder, 1)

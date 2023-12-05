@@ -17,8 +17,8 @@ class FixedBackground:
         self.image.clip_draw_to_origin(self.window_left, self.window_bottom, self.cw, self.ch, 0, 0)
 
     def update(self):
-        self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.w - self.cw - 1)
-        self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.h - self.ch - 1)
+        self.window_left = clamp(0, int(server.ball.x) - self.cw // 2, self.w - self.cw - 1)
+        self.window_bottom = clamp(0, int(server.ball.y) - self.ch // 2, self.h - self.ch - 1)
 
     def handle_event(self, event):
         pass
@@ -45,8 +45,8 @@ class TileBackground:
         pass
 
     def draw(self):
-        self.window_left = clamp(0, int(server.boy.x) - self.cw // 2, self.w - self.cw - 1)
-        self.window_bottom = clamp(0, int(server.boy.y) - self.ch // 2, self.h - self.ch - 1)
+        self.window_left = clamp(0, int(server.ball.x) - self.cw // 2, self.w - self.cw - 1)
+        self.window_bottom = clamp(0, int(server.ball.y) - self.ch // 2, self.h - self.ch - 1)
 
         # fill here
         tile_left = self.window_left // 800
@@ -71,7 +71,7 @@ cy = 700 // 450
 class InfiniteBackground:
 
     def __init__(self):
-        self.image = load_image('futsal_court.png')
+        self.image = load_image('ground_full2.png')
         self.cw = get_canvas_width()
         self.ch = get_canvas_height()
         self.w = self.image.w
@@ -92,8 +92,8 @@ class InfiniteBackground:
 
     def update(self):
         # quadrant 3
-        self.q3l = (int(server.boy.x) - self.cw // 2) % self.w
-        self.q3b = (int(server.boy.y) - self.ch // 2) % self.h
+        self.q3l = (int(server.ball.x) - self.cw // 2) % self.w
+        self.q3b = (int(server.ball.y) - self.ch // 2) % self.h
         self.q3w = clamp(0, self.w - self.q3l, self.w)
         self.q3h = clamp(0, self.h - self.q3b, self.h)
         # quadrant 2

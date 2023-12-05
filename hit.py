@@ -1,9 +1,7 @@
 # hit.py
 from pico2d import *
 import random
-
 import server
-
 
 class Hit:
     def __init__(self):
@@ -13,6 +11,7 @@ class Hit:
         self.initial_ball_x, self.initial_ball_y = 400, 30
         self.speed = 10
         self.target_x, self.target_y = 0, 0
+
 
 
     def handle_events(self):
@@ -51,17 +50,21 @@ class Hit:
                 dir_y /= length
 
                 move_distance = self.speed
-                self.ball_x += dir_x * move_distance
-                self.ball_y += dir_y * move_distance
+            self.ball_x += dir_x * move_distance
+            self.ball_y += dir_y * move_distance
 
             tolerance = 30
 
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
                 self.hit = False
 
+
+
     def draw(self):
         if self.hit:
             self.ball.draw(self.ball_x, self.ball_y, 10, 10)
+
+
 
 # 목표 위치
 target_positions_hit = [
