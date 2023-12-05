@@ -1,6 +1,7 @@
 from pico2d import *
 import math
 import game_framework
+import game_world
 import server
 
 PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
@@ -34,28 +35,16 @@ class Fielder:
         pass
 
 
-    def move_towards_ball(self):
-        if self.shared_ball_position is None:
-            return  # 공의 위치 정보가 없으면 아무 작업도 하지 않음
-
-        target_x, target_y = self.shared_ball_position
-        self.dir = math.atan2(target_y - self.y, target_x - self.x)
-        self.speed = RUN_SPEED_PPS
-        self.x += self.speed * math.cos(self.dir) * game_framework.frame_time
-        self.y += self.speed * math.sin(self.dir) * game_framework.frame_time
-
-
     def move_towards_ball(self, ball):
         if ball is None:
             return  # ball 객체가 None이면 아무 작업도 하지 않음
 
         # 공의 위치로 이동하는 로직을 작성
         target_x, target_y = ball.x, ball.y
-        # self.dir = math.atan2(target_y - self.y, target_x - self.x)
-        # self.speed = RUN_SPEED_PPS
+        self.dir = math.atan2(target_y - self.y, target_x - self.x)
+        self.speed = RUN_SPEED_PPS
         self.x += self.speed * math.cos(self.dir) * game_framework.frame_time
         self.y += self.speed * math.sin(self.dir) * game_framework.frame_time
-
 
 
     def draw(self):
@@ -68,6 +57,7 @@ class Fielder:
         else:
             self.running_left_image.clip_draw(self.frame * 45, 0, 45, 45,
                                       self.x, self.y, 30, 30)
+
 
     def update(self):
         self.move_towards_ball(server.hit)
@@ -100,3 +90,27 @@ class Fielder:
             self.idle_frame = (self.idle_frame + 1) % 8
         else:
             self.is_idle = False
+
+
+def create_fielders():
+    # 각 Fielder 객체의 초기 위치를 직접 지정
+    fielder_positions = [
+        (500, 90), #1B
+        (440, 140), #2B
+        (360, 140), #SS
+        (300, 90), #3B
+
+        (200, 250), #LF
+        (400, 300), #CF
+        (600, 250), #RF
+    ]
+
+    for i, (x, y) in enumerate(fielder_positions):
+        # 각 Fielder 객체를 다르게 초기화하여 생성
+        fielder = Fielder()
+        fielder.x, fielder.y = x, y
+        # game_world에 추가
+        game_world.add_object(fielder, 1)
+
+# 게임 초기화 시에 호출하여 Fielder 객체를 생성하고 배치
+create_fielders()
