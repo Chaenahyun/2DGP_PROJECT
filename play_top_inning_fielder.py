@@ -15,6 +15,7 @@ ground_full = Ground_full()
 fielder = Fielder()
 hit = Hit()
 hit.move_ball_randomly()
+print("안타!")
 
 def init():
     global fielder, ground_full, hit
@@ -29,10 +30,6 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             running = False
-
-        elif event.key == SDLK_SPACE:
-            hit.handle_events()
-            print('스페이스바 눌림')
 
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_RIGHT:

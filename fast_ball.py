@@ -44,7 +44,7 @@ class Fast_ball:
         self.target_x, self.target_y = target
 
     def get_bb(self):
-        return self.ball_x - 2, self.ball_y - 2, self.ball_x + 2, self.ball_y + 2
+        return self.ball_x - 5, self.ball_y - 5, self.ball_x + 5, self.ball_y + 5
 
     def handle_collision(self, group, other):
         if group == 'batter_AI:fast_ball':
