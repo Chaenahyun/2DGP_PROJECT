@@ -1,4 +1,15 @@
 from pico2d import *
+import math
+import game_framework
+import server
+
+PIXEL_PER_METER = (10.0 / 0.3)  # 10 pixel 30 cm
+RUN_SPEED_KMPH = 10.0  # Km / Hour
+RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
+RUN_SPEED_MPS = (RUN_SPEED_MPM / 60.0)
+#RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
+RUN_SPEED_PPS = 200
+
 
 class Fielder:
     def __init__(self):
@@ -48,6 +59,19 @@ class Fielder:
                 elif event.key == SDLK_DOWN:
                     self.dir_y += 1
 
+    def move_towards_ball(self, ball):
+        if ball is None:
+            return  # ball 객체가 None이면 아무 작업도 하지 않음
+
+        # 공의 위치로 이동하는 로직을 작성
+        target_x, target_y = ball.x, ball.y
+        self.dir = math.atan2(target_y - self.y, target_x - self.x)
+        self.speed = RUN_SPEED_PPS
+        self.x += self.speed * math.cos(self.dir) * game_framework.frame_time
+        self.y += self.speed * math.sin(self.dir) * game_framework.frame_time
+
+
+
     def draw(self):
         if self.is_idle:
             self.idle_image.clip_draw(self.frame * 45, 0, 45, 45,
@@ -60,6 +84,9 @@ class Fielder:
                                       self.x, self.y, 30, 30)
 
     def update(self):
+        self.move_towards_ball(server.hit)
+        #print('공을 향해 이동!')
+
         # x 방향 이동
         if self.dir_x > 0:
             if self.x + self.dir_x * 5 + self.character_width // 2 <= 800:

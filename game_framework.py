@@ -122,3 +122,5 @@ def clear():
 #         stack[-1].finish()
 #         stack.pop()
 #
+def frame_time():
+    return None

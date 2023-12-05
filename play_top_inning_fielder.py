@@ -19,6 +19,8 @@ fielder = Fielder()
 hit = Hit()
 hit.move_ball_randomly()
 print("안타!")
+fielder.move_towards_ball(server.hit)
+print('공이다!!!!!!!!')
 
 def init():
     global fielder, ground_full, hit
@@ -26,6 +28,8 @@ def init():
     ground_full = Ground_full()
     hit = Hit()
     hit.move_ball_randomly()
+    fielder.move_towards_ball(server.hit)
+    #print('공이다!!!!!!!!')
 
     server.background = Background()
     game_world.add_object(server.background, 0)

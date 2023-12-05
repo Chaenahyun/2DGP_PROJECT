@@ -2,4 +2,5 @@
 
 pitcher = None
 fielder = None
+hit = None
 background = None
