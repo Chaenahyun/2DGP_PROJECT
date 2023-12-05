@@ -49,6 +49,9 @@ class Batter_AI:
         if group == 'batter_AI:fast_ball':
             print(f'{group}과 충돌 감지!')
             #game_framework.push_mode(play_top_inning_fielder)
+            from play_top_inning_fielder import push_mode, play_top_inning_fielder
+            push_mode(play_top_inning_fielder)
+            print(f'수비 모드로 변경!')
 
 
     def draw(self):
