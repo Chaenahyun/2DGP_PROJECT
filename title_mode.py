@@ -1,3 +1,4 @@
+# title_mode.py
 from pico2d import *
 import game_framework
 import play_mode
@@ -23,7 +24,6 @@ def handle_events():
              game_framework.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
              game_framework.change_mode(play_mode)
-
 
 def draw():
     clear_canvas()

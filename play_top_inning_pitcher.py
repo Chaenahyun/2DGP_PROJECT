@@ -9,9 +9,7 @@ from batter_AI import Batter_AI
 from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
 from breaking_ball import Breaking_ball
 
-# 캔버스 열기
-ground_width, ground_height = 800, 450
-open_canvas(ground_width, ground_height)
+
 
 # 시작 여부
 running = True

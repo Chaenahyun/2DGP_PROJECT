@@ -17,6 +17,7 @@ from batter_AI import Batter_AI
 from runner import Runner
 from fielder import Fielder
 from fast_ball import Fast_ball
+import title_mode
 from fast_ball_AI import Fast_ball_AI
 from breaking_ball import Breaking_ball
 from breaking_ball_AI import Breaking_ball_AI
@@ -29,23 +30,14 @@ from ground_full import Ground_full
 from ground_batting_and_pitching import Ground_batting_and_pitching
 
 
+
 def handle_events():
     events = get_events()
     for event in events:
         if event.type == SDL_QUIT:
             game_framework.quit()
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
-            game_framework.quit()
-        # else:
-        #     pitcher.handle_event(event)
-        #     pitcher_AI.handle_event(event)
-        #     batter.handle_event(event)
-        #     batter_AI.handle_event(event)
-        #     runner.handle_event(event)
-        #     #catcher.handle_event(event)
-        #     fielder.handle_event(event)
-
-
+            game_framework.change_mode(title_mode)
 
 
 def init():
@@ -61,11 +53,11 @@ def init():
 
     #player
     batter = Batter() #타자
-    game_world.add_object(batter, 2)
+    game_world.add_object(batter, 1)
     game_world.add_collision_pair('fast_ball:batter', batter, None)
 
     batter_AI = Batter_AI()
-    game_world.add_object(batter_AI, 2)
+    game_world.add_object(batter_AI, 1)
     game_world.add_collision_pair('fast_ball:batter_AI', batter_AI, None)
 
     # catcher = Catcher() #포수
@@ -80,9 +72,14 @@ def init():
     #game_world.add_object(fielder, 2)
     #game_world.add_collision_pair('', fielder, None)
 
+    # 공
+    hit = Hit()
+    game_world.add_object(hit, 2)
+    game_world.add_collision_pair('hit:fielder', None, hit)
+
     #공
     fast_ball = Fast_ball()
-    game_world.add_object(fast_ball, 1)
+    game_world.add_object(fast_ball, 2)
     game_world.add_collision_pair('fast_ball:batter_AI', None, fast_ball)
 
 
