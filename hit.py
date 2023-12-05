@@ -2,6 +2,9 @@
 from pico2d import *
 import random
 
+import server
+
+
 class Hit:
     def __init__(self):
         self.ball = load_image('resource/ball.png')
@@ -10,6 +13,7 @@ class Hit:
         self.initial_ball_x, self.initial_ball_y = 400, 30
         self.speed = 10
         self.target_x, self.target_y = 0, 0
+
 
     def handle_events(self):
         pass

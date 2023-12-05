@@ -2,9 +2,12 @@
 from pico2d import *
 import game_framework
 import game_world
+import server
 from ground_full import Ground_full
 from fielder import Fielder
 from hit import Hit
+from background import FixedBackground as Background
+
 
 # 시작 여부
 running = True
@@ -23,6 +26,12 @@ def init():
     ground_full = Ground_full()
     hit = Hit()
     hit.move_ball_randomly()
+    server.background = Background()
+
+    game_world.add_object(server.background, 0)
+    server.fielder = Fielder()
+    game_world.add_object(server.fielder, 1)
+
 
 def handle_events():
     global running
