@@ -2,6 +2,8 @@
 #수비 이닝(초)
 #투수: 플레이어 / 타자: AI
 from pico2d import *
+
+import game_framework
 from game_world import collide
 from ground_batting_and_pitching import Ground_batting_and_pitching
 from pitcher import Pitcher
@@ -11,15 +13,17 @@ from breaking_ball import Breaking_ball
 
 
 
+
 # 시작 여부
 running = True
-
-# 객체 생성
 pitcher = Pitcher()
 batter_AI = Batter_AI()
 ground_batting_and_pitching = Ground_batting_and_pitching()
 fast_ball = Fast_ball()
 breaking_ball = Breaking_ball(380, 200, 5, 0.02)
+
+zoon = load_image('resource/zoon.png')
+#title = load_image('resource/title.png')
 
 bgm = load_music('resource_music/bg2.WAV')
 bgm.set_volume(32)
@@ -68,10 +72,22 @@ def update():
 def draw():
     clear_canvas()
     ground_batting_and_pitching.draw()
+    zoon.draw(70, 350, 200, 200)
+    #title.draw(800//2, 450//2, 800, 450)
+
+    x, y = 10, 430
+    text = "원하는 위치를 키보드로 입력하세요!"
+
+    # 폰트 초기화
+    font = load_font('neodgm.TTF', 20)
+
+    font.draw(x, y, text)
+
     pitcher.draw()
     batter_AI.draw()
     fast_ball.draw()
     breaking_ball.draw()
+
     update_canvas()
 
 while running:

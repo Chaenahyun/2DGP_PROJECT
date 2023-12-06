@@ -9,10 +9,6 @@ from batter import Batter
 from fast_ball import Fast_ball, target_positions_strike, target_positions_ball
 from breaking_ball import Breaking_ball
 
-# 캔버스 열기
-ground_width, ground_height = 800, 450
-open_canvas(ground_width, ground_height)
-
 # 시작 여부
 running = True
 
@@ -49,6 +45,17 @@ def update():
 def draw():
     clear_canvas()
     ground_batting_and_pitching.draw()
+
+    x, y = 10, 430
+    text = ("스페이스바를 누르면 공이 날라옵니다."
+            "타이밍을 맞춰 마우스 좌클릭으로 배트를 휘두르세요!")
+
+
+    # 폰트 초기화
+    font = load_font('neodgm.TTF', 15)
+
+    font.draw(x, y, text)
+
     pitcher_AI.draw()
     batter.draw()
     fast_ball.draw()

@@ -57,7 +57,7 @@ class Fast_ball:
     def draw(self):
         if self.start_pitching:
             self.ball.draw(self.ball_x, self.ball_y, self.ball_size, self.ball_size)
-            draw_rectangle(*self.get_bb())
+            #draw_rectangle(*self.get_bb())
 
     def update(self):
         if self.start_pitching:

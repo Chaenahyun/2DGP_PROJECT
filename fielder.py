@@ -93,7 +93,6 @@ class Fielder:
 
 
 def create_fielders():
-    # 각 Fielder 객체의 초기 위치를 직접 지정
     fielder_positions = [
         (500, 90), #1B
         (440, 140), #2B

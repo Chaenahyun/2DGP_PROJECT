@@ -25,6 +25,22 @@ class Batter:
             self.batting_sound = load_wav('resource_music/miss.WAV')
             self.batting_sound.set_volume(100)
 
+    def get_bb(self):
+        # 배트 바운딩 박스
+        half_width = 15  # 바운딩 박스 가로 크기의 절반
+        half_height = 10  # 바운딩 박스 세로 크기의 절반
+        offset_x = 150
+        return (self.batter_right_handed_x - half_width + offset_x, self.batter_right_handed_y - half_height,
+                self.batter_right_handed_x + half_width + offset_x, self.batter_right_handed_y + half_height)
+
+    def handle_collision(self, group, other):
+        if group == 'batter_AI:fast_ball':
+            print(f'{group}과 충돌 감지!')
+            #game_framework.push_mode(play_top_inning_fielder)
+            from play_top_inning_fielder import push_mode, play_top_inning_fielder
+            push_mode(play_top_inning_fielder)
+            print(f'수비 모드로 변경!')
+
 
     def handle_events(self):
         events = get_events()

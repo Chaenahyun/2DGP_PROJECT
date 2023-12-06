@@ -62,7 +62,7 @@ class Batter_AI:
         if self.start_hitting:
             self.hitter_right_handed.clip_draw(self.hitter_frame * 80, 0, 80, 80,
                 self.hitter_right_handed_x, self.hitter_right_handed_y, 385, 250)
-            draw_rectangle(*self.get_bb())
+            #draw_rectangle(*self.get_bb())
 
         else:
             self.idle_hitter_right_handed.clip_draw(self.hitter_idle_frame * 50, 0, 50, 50,

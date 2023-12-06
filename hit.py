@@ -57,20 +57,15 @@ class Hit:
 
             tolerance = 30
 
-            # 목표 위치에 도달하면 바운드
+            # 목표 위치에 도달
             if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
                 #self.hit = False
-                # 바운드 방향을 반대로 설정
-                dir_x *= -1
-                dir_y *= -1
-                # 이동 거리를 다시 설정하여 반대 방향으로 튕기게 함
-                self.ball_x += dir_x * move_distance
-                self.ball_y += dir_y * move_distance
-                print('굴러가유')
+                from play_bottom_inning_batter import push_mode, play_bottom_inning_batter
+                push_mode(play_bottom_inning_batter)
+                print(f'투수 모드로 변경!')
 
             # if abs(self.ball_x - self.target_x) < tolerance and abs(self.ball_y - self.target_y) < tolerance:
             #     self.hit = False
-
 
 
     def draw(self):
@@ -88,11 +83,3 @@ target_positions_hit = [
     (270, 100), (350, 140), (400, 160), (450, 140), (700, 250), #땅볼
     (270, 100), (350, 140), (400, 160), (450, 140), (700, 250) #땅볼
 ]
-
-# (20, 250), (200, 300), (400, 300), (600,300), (700, 250), #장타
-# (5, 310), (200, 400), (400, 400), (600, 400), (795, 310), #홈런
-# (200, 150), (300, 150), (400, 200), (300, 150), (600, 150), #단타
-# (200, 150), (300, 150), (400, 200), (300, 150), (600, 150), #단타
-# (270, 100), (350, 140), (400, 160), (450, 140), (700, 250) #땅볼
-# (270, 100), (350, 140), (400, 160), (450, 140), (700, 250) #땅볼
-# (270, 100), (350, 140), (400, 160), (450, 140), (700, 250) #땅볼

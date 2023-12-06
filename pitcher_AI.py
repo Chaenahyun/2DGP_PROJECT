@@ -25,6 +25,11 @@ class Pitcher_AI:
             self.pitching_sound.set_volume(100)
 
     def throw_random_ball(self):
+        # 이전에 선택한 공이 있다면 초기화
+        if self.selected_ball:
+            self.selected_ball = None
+
+        # 공을 새로 선택
         ball_type = random.choice(["fast", "breaking"])
         if ball_type == "fast":
             self.selected_ball = Fast_ball_AI()

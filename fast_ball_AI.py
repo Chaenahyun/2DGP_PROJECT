@@ -19,6 +19,17 @@ class Fast_ball_AI:
     def handle_events(self):
         pass
 
+    def get_bb(self):
+        return self.ball_x - 10, self.ball_y - 10, self.ball_x + 10, self.ball_y + 10
+
+    def handle_collision(self, group, other):
+        if group == 'batter:fast_ball_AI':
+            print(f'{group}과 충돌 감지!')
+            #game_framework.push_mode(play_top_inning_fielder)
+            from play_top_inning_fielder import push_mode, play_top_inning_fielder
+            push_mode(play_top_inning_fielder)
+            print(f'수비 모드로 변경!')
+
     def move_ball_randomly(self):
         target_index = random.randint(0, len(target_positions_strike) - 1)
         self.set_target_position(target_positions_strike[target_index])
@@ -65,7 +76,6 @@ class Fast_ball_AI:
 
 # 목표 위치
 target_positions_strike = [
-    (380, 150), (405, 150), (430, 150),
-    (380, 125), (405, 125), (430, 125),
-    (380, 90), (405, 90), (430, 90)
+    (380, 125), (405, 125), (430, 125)
+
 ]

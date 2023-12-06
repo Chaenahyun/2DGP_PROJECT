@@ -82,6 +82,11 @@ def init():
     game_world.add_object(fast_ball, 2)
     game_world.add_collision_pair('fast_ball:batter_AI', None, fast_ball)
 
+    #공
+    fast_ball_AI = Fast_ball_AI()
+    game_world.add_object(fast_ball_AI, 2)
+    game_world.add_collision_pair('fast_ball:batter', None, fast_ball_AI)
+
 
 def finish():
     game_world.clear()
